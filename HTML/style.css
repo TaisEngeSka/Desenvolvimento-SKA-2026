@@ -1,0 +1,9 @@
+.caixa{
+    height: 400px; /* altura */
+    width: 300px; /* largura */
+    border: 5px solid red;
+    display: inline-grid;
+    padding: 20px;
+    margin: 20px;
+    /*background-color: rgb(91, 160, 244);*/ /* cor de fundo */
+}

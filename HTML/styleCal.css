@@ -1,0 +1,28 @@
+.corpoCal {
+  height: 200px; /* altura */
+  width: 200px; /* largura */
+  border: 5px solid red; /* borda */
+  padding: 20px; /* margem dentro  */
+  margin: 20px; /* margem fora */
+  background-color: rgb(194, 194, 240); /* cor de fundo */
+  display: inline-table;
+}
+
+.telaCal {
+  height: 30px; /* altura */
+  width: 170px; /* largura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid red; /* borda */
+  background-color: white; /* cor de fundo */
+}
+
+.linha {
+  display: inline-flex;
+}
+
+.botao {
+  width: 50px;
+  height: 50px;
+}
