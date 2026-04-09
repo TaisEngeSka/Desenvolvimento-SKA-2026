@@ -1,0 +1,33 @@
+
+export abstract class personagem {
+    public nome: string = "personagem";
+    protected forca: number = 0;
+    protected vida: number = 0;
+    
+    constructor (nome:string, forca:number, vida:number){
+        this.nome = nome;
+        this.forca = forca;
+        this.vida = vida;
+    }
+
+    isContinuaVivo ():boolean{
+        return this.vida > 0; 
+    } 
+
+    sofrerAtaque (dano:number ):void{
+        this.vida = this.vida - dano;
+        console.log(`${this.nome} recebeu ${dano} de dano, Vida atual ${this.vida}`);
+    }
+
+    gerarAtaque ():number{ // vai gerar um número aleatório entre 0 e 3
+        let maximoAtk = 3;
+        return Math.floor (Math.random() * maximoAtk);
+    }
+    
+    public abstract atacar (persona:personagem):void;
+    
+    regenerar (extra:number):number {
+    return this.vida += extra;
+    }
+
+}
