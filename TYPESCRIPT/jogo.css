@@ -27,3 +27,15 @@ body {
     flex-direction: column;
     align-items: center;
 }
+.botao {
+  height: 30px;              /* altura */
+  width: 300px;              /* largura */
+  border: 5px solid red;     /* borda vermelha */
+
+  display: flex;             /* ativa o layout flexível (Flexbox) */
+  justify-content: center;   /* centraliza horizontal */
+  align-items: center;       /* centraliza vertical */
+
+  margin: 20px auto;              /* adiciona espaço externo ao redor do botão */
+  text-align: center;        /* garante que o texto fique centralizado */
+}
