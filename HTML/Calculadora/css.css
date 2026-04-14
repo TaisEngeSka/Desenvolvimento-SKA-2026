@@ -1,0 +1,42 @@
+.Calculadora {
+    background-color: red; /* Define o fundo da calculadora*/
+    height: 400px; /* Altura*/
+    width: 500px; /* Largura */   
+    margin: 50px auto; /* Centraliza horizontalmente  */
+    border-radius: 20px; /* arredonda as bordas */
+}
+
+.botao {
+    gap: 10px; /* Espaço entre os botões (linhas e colunas) */
+    display: grid; /* Ativa o layout em grade (grid) */
+    grid-template-columns: repeat(4, 100px); /* Cria 4 colunas com 100px cada */
+    justify-content: center; /* Centraliza a grade horizontalmente dentro da calculadora */
+    border-radius: 20px; /* arredonda as bordas */
+}
+
+.input {
+    width: 90%; /* Define a largura como 90% do container pai */
+    height: 30px; /* Altura */
+    font-size: 24px; /* Tamanho da fonte */
+    text-align: right; /* Alinha o texto à direita (estilo calculadora) */
+    display: block; /* Faz o input se comportar como bloco */
+    margin: 10px auto; /* Centraliza horizontalmente e adiciona espaço vertical */
+    border: 2px solid black;
+    border-radius: 20px; /* arredonda as bordas */
+}
+
+button {
+    font-size: 24px; /* Tamanho da fonte dos botões */
+    background-color: rgb(178, 159, 228); /* Cor de fundo dos botões */
+    height: 50px; /* Altura dos botões */
+    border: 2px solid black; /* espessura | estilo | cor */
+    border-radius: 20px; /* arredonda as bordas */
+}
+
+body {
+    display: flex; /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Faz o body ocupar 100% da altura da tela */
+    margin: 0; /* Remove margens padrão do navegador */
+}
