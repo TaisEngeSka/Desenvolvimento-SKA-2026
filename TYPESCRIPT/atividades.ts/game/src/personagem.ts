@@ -6,7 +6,14 @@ export abstract class personagem {
   protected defesa: number = 0;
   protected imagem: string = "";
 
-  constructor(nome: string, forca: number, vida: number, dano: number, defesa: number, imagem: string) {
+  constructor(
+    nome: string,
+    forca: number,
+    vida: number,
+    dano: number,
+    defesa: number,
+    imagem: string,
+  ) {
     this.nome = nome;
     this.forca = forca;
     this.vida = vida;
@@ -21,9 +28,19 @@ export abstract class personagem {
 
   sofrerAtaque(dano: number): void {
     this.vida = this.vida - dano;
-    console.log(`${this.nome} recebeu ${dano} de dano, Vida atual ${this.vida}`);
+    console.log(
+      `${this.nome} recebeu ${dano} de dano, Vida atual ${this.vida}`,
+    );
   }
 
+  getVida() {
+    return this.vida;
+  }
+
+  getImg(){
+    return this.imagem;
+  }
+  
   gerarAtaque(): number {
     // vai gerar um número aleatório entre 0 e 3
     let maximoAtk = 3;
@@ -33,7 +50,7 @@ export abstract class personagem {
   public abstract atacar(persona: personagem): void;
 
   sofrerAaque(dano: number, defesa: number): void {
-    let danoReal: number = dano - (defesa * 0.10);
+    let danoReal: number = dano - defesa * 0.1;
     this.vida -= danoReal;
   }
 
