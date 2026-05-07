@@ -22,10 +22,6 @@
   gap: 40px;
 }
 
-/*.VS {
-    align-items: center;
-    justify-content: center;
-}*/
 
 .borda {
   border: 1px solid black;
@@ -69,11 +65,16 @@ button {
   align-items: center;
   color: white;
   height: 300px;
-  padding: 10px;
+  padding: auto;
   margin: 10px;
+  overflow: auto;
 }
 
 h2 {
+  text-align: center;
+}
+
+p{
   text-align: center;
 }
 
@@ -91,4 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+button:hover{
+    transform: scale(1.25);
 }

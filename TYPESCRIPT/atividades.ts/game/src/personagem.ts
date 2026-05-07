@@ -28,7 +28,7 @@ export abstract class personagem {
 
   sofrerAtaque(dano: number): void {
     this.vida = this.vida - dano;
-    console.log(
+    this.exibirMsg(
       `${this.nome} recebeu ${dano} de dano, Vida atual ${this.vida}`,
     );
   }
@@ -57,4 +57,9 @@ export abstract class personagem {
   regenerar(extra: number): number {
     return (this.vida += extra);
   }
+
+  public exibirMsg(mensagem: string){
+     document.getElementById ("console")!.innerHTML += '<p>' + mensagem + '<p>';
+  }
+
 }
