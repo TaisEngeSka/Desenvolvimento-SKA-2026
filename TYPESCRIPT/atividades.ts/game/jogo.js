@@ -2,19 +2,25 @@
 (() => {
   // src/personagem.ts
   var personagem = class {
-    constructor(nome, forca, vida, dano, defesa, imagem) {
+    constructor(nome, forca, vida, dano, defesa, imagem, imgtomouDano) {
       this.nome = "personagem";
       this.forca = 0;
       this.vida = 0;
+      this.vidaMax = 0;
       this.dano = 0;
       this.defesa = 0;
       this.imagem = "";
+      this.imagemPadrao = "";
+      this.imagemTomouDano = "";
       this.nome = nome;
       this.forca = forca;
       this.vida = vida;
       this.dano = dano;
       this.defesa = defesa;
       this.imagem = imagem;
+      this.imagemPadrao = imagem;
+      this.imagemTomouDano = imgtomouDano;
+      this.vidaMax = vida;
     }
     isContinuaVivo() {
       return this.vida > 0;
@@ -31,6 +37,9 @@
     getImg() {
       return this.imagem;
     }
+    setImg(img) {
+      this.imagem = img;
+    }
     gerarAtaque() {
       let maximoAtk = 3;
       return Math.floor(Math.random() * maximoAtk);
@@ -45,31 +54,58 @@
     exibirMsg(mensagem) {
       document.getElementById("console").innerHTML += "<p>" + mensagem + "<p>";
     }
+    alterarImgSofrerAtaque() {
+      this.imagem = this.imagemTomouDano;
+    }
   };
 
   // src/guerreiro.ts
   var guer = class extends personagem {
     // "extends" faz com que essa classe seja filha da classe original.
     constructor(nome, forca, vida, dano, defesa) {
-      super(nome, forca, vida, dano, defesa, "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/player1.jpg");
+      super(
+        nome,
+        forca,
+        vida,
+        dano,
+        defesa,
+        "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/guerPadrao.png",
+        "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/guerDano.png"
+      );
     }
     atacar(persona) {
+      let dano = 0;
+      let img = this.getImg();
       if (this.gerarAtaque() == 0) {
         this.exibirMsg(`${this.nome} ataca o personagem ${persona.nome}`);
-        persona.sofrerAtaque(this.forca + 5);
+        dano = 5;
+        this.setImg(
+          "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/guerA1.png"
+        );
       } else if (this.gerarAtaque() == 1) {
         this.exibirMsg(`${this.nome} ataca o personagem ${persona.nome}`);
-        persona.sofrerAtaque(this.forca + 10);
+        dano = 10;
+        this.setImg(
+          "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/guerA1.png"
+        );
       } else if (this.gerarAtaque() == 2) {
         this.exibirMsg(`${this.nome} ataca o personagem ${persona.nome}`);
-        persona.sofrerAtaque(this.forca + 15);
+        dano = 15;
+        this.setImg(
+          "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/gueraA2.png"
+        );
       } else {
         this.exibirMsg(`${this.nome} ataca o personagem ${persona.nome}`);
-        persona.sofrerAtaque(this.forca + 30);
+        this.setImg(
+          "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/guerA3.png"
+        );
+        dano = 30;
       }
       if (this.vida < 150) {
         persona.regenerar(10);
       }
+      persona.alterarImgSofrerAtaque();
+      persona.sofrerAaque(dano, 0);
     }
   };
 
@@ -77,22 +113,38 @@
   var Mago = class extends personagem {
     // "extends" faz com que essa classe carro seja filha da classe funcionario.
     constructor(nome, forca, vida, dano, defesa) {
-      super(nome, forca, vida, dano, defesa, "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/player2.jpg");
+      super(
+        nome,
+        forca,
+        vida,
+        dano,
+        defesa,
+        "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/magoPadrao.png",
+        "file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/magoDano.png"
+      );
     }
     atacar(persona) {
+      let dano = 0;
+      let img = this.getImg();
       if (this.gerarAtaque() == 0) {
         this.exibirMsg(`${this.nome} ataca o personagem ${persona.nome}`);
-        persona.sofrerAtaque(this.forca + 5);
+        dano = 5;
+        this.setImg("file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/magoA1.png");
       } else if (this.gerarAtaque() == 1) {
         this.exibirMsg(`${this.nome} ataca o personagem ${persona.nome}`);
-        persona.sofrerAtaque(this.forca + 10);
+        dano = 10;
+        this.setImg("file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/magoA1.png");
       } else if (this.gerarAtaque() == 2) {
         this.exibirMsg(`${this.nome} ataca o personagem ${persona.nome}`);
-        persona.sofrerAtaque(this.forca + 15);
+        dano = 15;
+        this.setImg("file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/magoA2.png");
       } else {
         this.exibirMsg(`${this.nome} ataca o personagem ${persona.nome}`);
-        persona.sofrerAtaque(this.forca + 30);
+        this.setImg("file:///C:/Users/Aluno/Desktop/Ta%C3%ADs/Desenvolvimento-SKA-2026/TYPESCRIPT/atividades.ts/game/imgs/magoA3.png");
+        dano = 30;
       }
+      persona.sofrerAtaque(this.forca + dano);
+      persona.alterarImgSofrerAtaque();
       if (this.vida < 150) {
         persona.regenerar(10);
       }
@@ -105,16 +157,26 @@
       let turno = 1;
       this.atualizarInterface(player1, player2);
       while (player1.isContinuaVivo() && player2.isContinuaVivo()) {
-        player1.exibirMsg("\n ================= turno" + turno + "===================");
+        player1.exibirMsg(
+          "\n ================= turno" + turno + "==================="
+        );
         player1.atacar(player2);
+        this.attImg(player1, player2);
         this.atualizarInterface(player1, player2);
+        player2.alterarImgSofrerAtaque();
         await this.esperaTempo();
+        player1.setImg(player1.imagemPadrao);
+        player2.setImg(player2.imagemPadrao);
+        this.attImg(player1, player2);
         if (!player2.isContinuaVivo()) {
           break;
         }
         player2.atacar(player1);
+        this.attImg(player1, player2);
         this.atualizarInterface(player1, player2);
         await this.esperaTempo();
+        player2.setImg(player2.imagemPadrao);
+        this.attImg(player1, player2);
         turno += 1;
       }
       if (player1.isContinuaVivo()) {
@@ -126,11 +188,15 @@
     buscaComponenteHTML(id) {
       return document.getElementById(id);
     }
+    attImg(jogadorUm, jogadorDois) {
+      this.buscaComponenteHTML("imgJogadorUm").src = jogadorUm.getImg();
+      this.buscaComponenteHTML("imgJogadorDois").src = jogadorDois.getImg();
+    }
     atualizarInterface(jogadorUm, jogadorDois) {
-      document.getElementById("imgJogadorUm").src = jogadorUm.getImg();
-      document.getElementById("imgJogadorDois").src = jogadorDois.getImg();
-      this.buscaComponenteHTML("saudeUm").textContent = "HP: " + jogadorUm.getVida();
-      this.buscaComponenteHTML("saudeDois").textContent = "HP: " + jogadorDois.getVida();
+      this.buscaComponenteHTML("saudeUm").textContent = "\u{1D58D}\u{1D595}: " + jogadorUm.getVida();
+      this.buscaComponenteHTML("saudeDois").textContent = "\u{1D58D}\u{1D595}: " + jogadorDois.getVida();
+      this.buscaComponenteHTML("playerDoisPorcentagem").style.width = jogadorDois.getVida() * 100 / jogadorDois.vidaMax + "%";
+      this.buscaComponenteHTML("playerUmPorcentagem").style.width = jogadorUm.getVida() * 100 / jogadorUm.vidaMax + "%";
       this.buscaComponenteHTML("nomeUm").textContent = jogadorUm.nome;
       this.buscaComponenteHTML("nomeDois").textContent = jogadorDois.nome;
     }

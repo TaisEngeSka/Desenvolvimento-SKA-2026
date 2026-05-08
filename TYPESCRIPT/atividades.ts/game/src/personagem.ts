@@ -2,10 +2,13 @@ export abstract class personagem {
   public nome: string = "personagem";
   protected forca: number = 0;
   protected vida: number = 0;
+  public vidaMax:number = 0;
   protected dano: number = 0;
   protected defesa: number = 0;
   protected imagem: string = "";
-
+  public imagemPadrao: string = "";
+  protected imagemTomouDano: string = "";
+  
   constructor(
     nome: string,
     forca: number,
@@ -13,6 +16,7 @@ export abstract class personagem {
     dano: number,
     defesa: number,
     imagem: string,
+    imgtomouDano:string
   ) {
     this.nome = nome;
     this.forca = forca;
@@ -20,6 +24,9 @@ export abstract class personagem {
     this.dano = dano;
     this.defesa = defesa;
     this.imagem = imagem;
+    this.imagemPadrao = imagem;
+    this.imagemTomouDano = imgtomouDano;
+    this.vidaMax = vida;
   }
 
   isContinuaVivo(): boolean {
@@ -37,10 +44,14 @@ export abstract class personagem {
     return this.vida;
   }
 
-  getImg(){
+  getImg() {
     return this.imagem;
   }
-  
+
+  setImg(img: string) {
+    this.imagem = img;
+  }
+
   gerarAtaque(): number {
     // vai gerar um número aleatório entre 0 e 3
     let maximoAtk = 3;
@@ -58,8 +69,11 @@ export abstract class personagem {
     return (this.vida += extra);
   }
 
-  public exibirMsg(mensagem: string){
-     document.getElementById ("console")!.innerHTML += '<p>' + mensagem + '<p>';
+  public exibirMsg(mensagem: string) {
+    document.getElementById("console")!.innerHTML += "<p>" + mensagem + "<p>";
   }
 
+  public alterarImgSofrerAtaque(){
+    this.imagem = this.imagemTomouDano;
+  }
 }
